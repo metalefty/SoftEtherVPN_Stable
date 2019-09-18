@@ -1110,11 +1110,11 @@ LIST *EnumLogFile(char *hubname)
 	// Enumerate in the server_log
 	if (hubname == NULL)
 	{
-		EnumLogFileDir(o, "server_log");
+		EnumLogFileDir(o, SERVER_LOG_DIR);
 	}
 
 	// Enumerate in the packet_log
-	Format(tmp, sizeof(tmp), "%s/packet_log", exe_dir);
+	Format(tmp, sizeof(tmp), "%s/"HUB_PACKET_LOG_DIR, exe_dir);
 
 	if (hubname == NULL)
 	{
@@ -1130,7 +1130,7 @@ LIST *EnumLogFile(char *hubname)
 				{
 					char dir_name[MAX_PATH];
 
-					Format(dir_name, sizeof(dir_name), "packet_log/%s", e->FileName);
+					Format(dir_name, sizeof(dir_name), HUB_PACKET_LOG_DIR"/%s", e->FileName);
 
 					EnumLogFileDir(o, dir_name);
 				}
@@ -1143,13 +1143,13 @@ LIST *EnumLogFile(char *hubname)
 	{
 		char dir_name[MAX_PATH];
 
-		Format(dir_name, sizeof(dir_name), "packet_log/%s", hubname);
+		Format(dir_name, sizeof(dir_name), HUB_PACKET_LOG_DIR"/%s", hubname);
 
 		EnumLogFileDir(o, dir_name);
 	}
 
 	// Enumerate in the security_log
-	Format(tmp, sizeof(tmp), "%s/security_log", exe_dir);
+	Format(tmp, sizeof(tmp), "%s/"HUB_SECURITY_LOG_DIR, exe_dir);
 
 	if (hubname == NULL)
 	{
@@ -1165,7 +1165,7 @@ LIST *EnumLogFile(char *hubname)
 				{
 					char dir_name[MAX_PATH];
 
-					Format(dir_name, sizeof(dir_name), "security_log/%s", e->FileName);
+					Format(dir_name, sizeof(dir_name), HUB_SECURITY_LOG_DIR"/%s", e->FileName);
 
 					EnumLogFileDir(o, dir_name);
 				}
@@ -1178,7 +1178,7 @@ LIST *EnumLogFile(char *hubname)
 	{
 		char dir_name[MAX_PATH];
 
-		Format(dir_name, sizeof(dir_name), "security_log/%s", hubname);
+		Format(dir_name, sizeof(dir_name), HUB_SECURITY_LOG_DIR"/%s", hubname);
 
 		EnumLogFileDir(o, dir_name);
 	}
