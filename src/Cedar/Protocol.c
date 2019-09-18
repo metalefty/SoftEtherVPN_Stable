@@ -874,7 +874,7 @@ bool TryGetRootCertChain(LIST *o, X *x, bool auto_save, X **found_root_x)
 		wchar_t dirname[MAX_SIZE];
 		wchar_t exedir[MAX_SIZE];
 
-		GetExeDirW(exedir, sizeof(exedir));
+		GetDbDirW(exedir, sizeof(exedir));
 		CombinePathW(dirname, sizeof(dirname), exedir, L"chain_certs");
 		MakeDirExW(dirname);
 
@@ -1180,7 +1180,7 @@ void AddAllChainCertsToCertList(LIST *o)
 		return;
 	}
 
-	GetExeDirW(exedir, sizeof(exedir));
+	GetDbDirW(exedir, sizeof(exedir));
 
 	CombinePathW(dirname, sizeof(dirname), exedir, L"chain_certs");
 

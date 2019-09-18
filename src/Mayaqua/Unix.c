@@ -915,7 +915,7 @@ void *UnixNewSingleInstance(char *instance_name)
 		StrCpy(tmp, sizeof(tmp), instance_name);
 	}
 
-	GetExeDir(dir, sizeof(dir));
+	GetPidDir(dir, sizeof(dir));
 
 	// File name generation
 	Format(name, sizeof(name), "%s/.%s", dir, tmp);
@@ -2367,7 +2367,7 @@ void UnixGenPidFileName(char *name, UINT size)
 		return;
 	}
 
-	GetExeDir(dir, sizeof(dir));
+	GetPidDir(dir, sizeof(dir));
 
 	GetExeName(exe_name, sizeof(exe_name));
 	StrCat(exe_name, sizeof(exe_name), ":pid_hash");
@@ -2412,7 +2412,7 @@ void UnixGenCtlFileName(char *name, UINT size)
 		return;
 	}
 
-	GetExeDir(dir, sizeof(dir));
+	GetPidDir(dir, sizeof(dir));
 
 	GetExeName(exe_name, sizeof(exe_name));
 	StrCat(exe_name, sizeof(exe_name), ":pid_hash");

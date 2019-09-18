@@ -1460,6 +1460,36 @@ void GetExeNameW(wchar_t *name, UINT size)
 	UniStrCpy(name, size, exe_file_name_w);
 }
 
+void GetLogDir(char *name, UINT size)
+{
+	Format(name, size, "%%SE_LOGDIR%%");
+}
+
+void GetLogDirW(wchar_t *name, UINT size)
+{
+	UniFormat(name, size, L"%%SE_LOGDIR%%");
+}
+
+void GetDbDir(char *name, UINT size)
+{
+	Format(name, size, "%%SE_DBDIR%%");
+}
+
+void GetDbDirW(wchar_t *name, UINT size)
+{
+	UniFormat(name, size, L"%%SE_DBDIR%%");
+}
+
+void GetPidDir(char *name, UINT size)
+{
+	Format(name, size, "%%SE_PIDDIR%%");
+}
+
+void GetPidDirW(wchar_t *name, UINT size)
+{
+	UniFormat(name, size, L"%%SE_PIDDIR%%");
+}
+
 // Initialization of the aquisition of the EXE file name
 void InitGetExeName(char *arg)
 {
@@ -2382,14 +2412,20 @@ void InnerFilePathW(wchar_t *dst, UINT size, wchar_t *src)
 		return;
 	}
 
-	if (src[0] != L'@')
+	if (src[0] != L'@' && src[0] != L'$')
 	{
 		NormalizePathW(dst, size, src);
+	}
+	else if (src[0] == L'$')
+	{
+		wchar_t dir[MAX_SIZE];
+		GetDbDirW(dir, sizeof(dir));
+		ConbinePathW(dst, size, dir, &src[1]);
 	}
 	else
 	{
 		wchar_t dir[MAX_SIZE];
-		GetExeDirW(dir, sizeof(dir));
+		GetLogDirW(dir, sizeof(dir));
 		ConbinePathW(dst, size, dir, &src[1]);
 	}
 }
